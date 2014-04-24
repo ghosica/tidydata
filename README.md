@@ -4,11 +4,17 @@ run_analysis
 The script is created in order to obtain a tidy data from data collected from the accelerometers from the Samsung Galaxy S smartphone. This data can be later used for further analysis
 
 The script perform following operation:
+
 1. Download data and save it as .zip file in folder "data"
+
 2. Unzip data
+
 3. Create a data frame with all features from original data from both train and test files
+
 4. Subtract only only the measurements on the mean and standard deviation for each measurement (please see below further explanation)
+
 5. Create a data frame with the average of each variable for each activity and each subject
+
 6. Save dataset in a separate file *"tidy.txt"*
 
 
