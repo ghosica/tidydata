@@ -1,19 +1,21 @@
 library(reshape2)
 
+##download and unzip data
 url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(url,destfile="data.zip")
 unzip("data.zip",exdir="data")
 
+##get files names and activity and features names
 labelFilename <- file.path('data','UCI HAR Dataset')
 list1<-list.files(labelFilename,full.names=TRUE)
 activity<-read.table(list1[1])
 features<-read.table(list1[2])
 
-##test
+##create test dataset
 files1<-list.files(file.path('data','UCI HAR Dataset','test'),full.names=TRUE)
 testdata<-do.call(cbind, lapply(files1[c(2,4,3)],read.table))
 
-##train
+##create train dataset
 files2<-list.files(file.path('data','UCI HAR Dataset','train'),full.names=TRUE)
 traindata<-do.call(cbind, lapply(files2[c(2,4,3)],read.table))
 
@@ -36,4 +38,5 @@ levels(data$activity)<-activity$V2
 melt<-melt(data,id=c("subject","activity"),measure.vars=4:ncol(data))
 tidy<-dcast(melt,activity+subject ~ variable,mean)
 
+##create seperate .txt file
 write.table(tidy,"tidy.txt",sep="\t")
