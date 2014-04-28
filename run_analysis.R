@@ -35,7 +35,7 @@ data$activity<-as.factor(data$activity)
 levels(data$activity)<-activity$V2
 
 ##create a tidy dataset with means
-melt<-melt(data,id=c("subject","activity"),measure.vars=4:ncol(data))
+melt<-melt(data,id=c("subject","activity"),measure.vars=3:ncol(data))
 tidy<-dcast(melt,activity+subject ~ variable,mean)
 
 ##create seperate .txt file
